@@ -1,0 +1,27 @@
+---
+title: "R Code Camp"
+format: html
+---
+
+---
+title: "Introduction to R"
+format:
+  revealjs:
+    theme: simple
+---
+
+# Introduction to R
+
+- What is R?
+- Why use R?
+
+# Installing R
+
+- Download R
+- Install RStudio
+
+# Your first command
+
+```r
+1 + 1
+```
