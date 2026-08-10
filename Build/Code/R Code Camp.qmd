@@ -1,27 +1,458 @@
 ---
-title: "R Code Camp"
-format: html
----
-
----
 title: "Introduction to R"
 format:
-  revealjs:
-    theme: simple
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-fold: show
+    code-tools: true
+    smooth-scroll: true
 ---
 
-# Introduction to R
+# Getting Started with R
 
-- What is R?
-- Why use R?
+Welcome to the R Basics page! We'll walk through installing R, running simple operations, creating objects, understanding data types, and more.
 
-# Installing R
+## Installing R and RStudio
 
-- Download R
-- Install RStudio
+1. **Download R** from the CRAN website: [https://cran.r-project.org/](https://cran.r-project.org/)
+2. **Download RStudio** (a user-friendly IDE): [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+3. Install R first, then RStudio.
 
-# Your first command
+## Interacting with R
+To interact with R, we need R-Studio which is very user friendly. By default, R studio has 4 different panes. The top-left pane shows R-script where you would like to code and save your work as you go. To create a new script, go to File > New File > R Script, or press `ctrl(command) + shift + N`. To run your commands, press `ctrl + Enter` or `command + Enter`. To run all your code at once, press `Ctrl + A + Enter`. 
+
+The bottom left window is your console. If you quickly want to check something or run a code without needing it to be saved on your r-script, you can directly type into the console. The output/messages/errors are also shown in the console once you run the code. 
+
+Next, the top right window is called ``The Environment". This window shows vectors, matrices, dataframes, output etc. in form of objects. 
+
+The last window on the bottom right shows plots and graphs. There are also other tabs such as "Files", "History", "Packages and so on. 
+
+## Running Basic Operations
+
+You can use R like a calculator. Try running these in the console, or any other calculations you would do in the calculator.
+
+Addition
+```{r}
+#| echo: true
+#| warning: false
+5+3
+```
+
+Substraction
+```{r}
+#| echo: true
+#| warning: false
+5-3
+```
+
+Multiplication
+```{r}
+#| echo: true
+#| warning: false
+5 * 3
+```
+
+Division
+```{r}
+#| echo: true
+#| warning: false
+5/3
+```
+
+Simplification
+```{r}
+#| echo: true
+#| warning: false
+5+3 - 2^3
+```
+
+## Basic Functions
+R has some basic functions installed already. Some of examples are given below.
+
+```{r}
+sum(c(1, 2, 3))            # Calculates sum
+mean(c(4, 5, 6))           # Calculates mean
+seq(1, 10, by = 2)         # Generates a sequence
+sample(seq(1:6), size = 1) # Rolling a die
+```
+
+## Installing and Loading Packages
+R is open source; anyone can make their own functions and packages. One of the most commonly used and versatile package is `tidyverse`. You can install and load it as follows. Note that you only need to install packages once. 
 
 ```r
-1 + 1
+install.packages("tidyverse") #run this in console
+library(tidyverse) 
 ```
+
+## Getting Help
+Different help commands allow you to go through the arguments and details of a particular function. For example, if you want to know how to use `mean()` function, you can do it in the following way.  
+```r
+?mean
+help(mean)
+```
+
+## Creating Objects
+
+R is an object-based programming. You can assign values to objects using `<-` or `=` operator. You can assign values, data, integers, characters et cetera to the object.  
+
+```{r}
+a <- 1
+b <- 2
+c <- 3
+```
+
+We can use `print()` or just type the object name to view its value:
+
+```r
+a
+```
+
+If you are computing something (a simple arithmetic operation or running a regression itself), you can store those results as well. Stata has different `r()` and `e()` class commands to store results which can be limiting, but in R, the results can simply be stored into different objects granting more flexibility.
+
+Note that objects can be overwritten. If I want to assign different values to a, b and c, I can do so as follows.
+
+```{r}
+a <- 10
+b <- 30
+c <- 12
+```
+
+If you print these objects, you will get new assigned values instead of the old ones. 
+
+Now, let us suppose a school student asked us to solve quadratic equations of the form $ax^2 + bx + c$. The quadratic formula we all know for this is:
+
+$$
+\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+We have defined the values for a, b and c in the previous code snippet. So, we can simply calculate using the quadratic formula. 
+
+```{r}
+(-b + sqrt(b^2 - 4*a*c)) / (2 * a)
+```
+
+```{r}
+(-b - sqrt(b^2 - 4*a*c)) / (2 * a)
+```
+
+You can store these results in object too. 
+
+
+```{r}
+result <- (-b + sqrt(b^2 - 4*a*c)) / (2 * a)
+print(result)
+```
+
+Sometimes we might need to use different values of a,b and c to calculate the quadratic equation. For such repetitive tasks, we can make our own functions and run loops to compute at once. We'll talk about it later on in the camp.
+
+## Classes of Objects
+
+In STATA or excel, some columns are numbers and some can be characters/ strings. They could also be boolean or logical (`TRUE` or `FALSE`). R has different terminologies and handles the data or objects based on the type it is defined as. We call it `class()` in R. 
+
+Some common types of classes are as follows:
+
+```r
+num <- 3.14       # numeric
+int <- 42L        # integer
+char <- "Hello"   # character
+logic <- TRUE     # logical
+gender <- factor("male", "female") # factor
+```
+
+You can check the class of objects using `class` or `typeof` command. 
+
+```r
+class(num)
+class(char)
+```
+
+## Vectors
+
+Vectors are a basic data structure in R. A single number is technically a vector of length 1. The function `length` tells us how many entries are there in a vector. 
+
+### Numeric
+
+Lets create a vector of our own. Suppose we have 4 graduate students in a classroom and we want to store their age in years. 
+
+```{r}
+age <- c(20, 25, 30, 28)
+length(age)
+```
+We see that the vector has 4 entries. But what is the class of this vector? Lets check.
+
+```{r}
+class(age)
+```
+
+Similarly, lets create a vector of income of students. 
+
+```{r}
+income <- c(5,10,20,30)
+class(income)
+```
+
+### Factors (Categorical Variables)
+Factors denote a class for storing categorical data in R. Suppose, now we also want to store the information on gender of 4 students in the classroom. 
+
+```{r}
+gender <- factor(c("male", "female", "female", "male"))
+```
+
+### Logical
+Now, we want to know whether these students attended the code camp at CSU. Lets store that information as well as a vector. 
+
+```{r}
+attend_camp <- c(TRUE, FALSE, FALSE, TRUE)
+```
+Note that, normally in statistical analysis, we store this information as 1 or 0. But I am using logical vector here just for the illustration purposes. 
+
+## Data Frames
+Until now, we just worked with numbers and vectors. In reality, as economists, we would have to work with large dataset. Like excel spreadsheet, R has an object class `dataframe` that stores the data in a spreadsheet-like format. 
+
+Now, lets try combing the information on 4 students in a single data frame.
+
+```{r}
+dat_grads <- data.frame(age, gender, income, attend_camp, id = seq(1:4))
+head(dat_grads)
+```
+
+## The accessor 
+The accessor `$` is used to access particular columns within a dataframe in R.
+
+```{r}
+# What is the frequency of male and female?
+table(dat_grads$gender)
+```
+
+## Matrices
+Matrix is very important in econometric analysis. All the econometrics commands in STATA, R or any other statistical packages are based on matrix. If you have ever heard or used GAUSS, you will need to do regressions and stuff using the matrix operations. Thanks to developers these days who make pre-built packages where we could just input our data frame and variables and get regression results. 
+
+Lets start off with a simple $2\times2$ matrix. 
+
+```{r}
+mat1 <- matrix(c(1,2,3,4), nrow = 2, ncol = 2, byrow = TRUE)
+print(mat1)
+```
+
+Similarly, lets create a $2\times3$ matrix. 
+
+```{r}
+mat2 <- matrix(c(1,2,3,4,5,6), nrow = 2, ncol = 6)
+
+```
+
+Lets do some matrix operations which we commonly use including addition, subtraction, multiplication, inverse, transpose et. cetera. Note that the dimensions need to match following matrix rules, otherwise R will return error. 
+
+```{r}
+mat1 + mat1 # Addition
+mat1 %*% mat2 # Multiplication
+t(mat2)     #Transpose
+solve(mat1) # Inverse
+```
+
+## Comment your work!
+
+Commenting your code is important for two main reasons. First, as a scientist, you should strive to make your work reproducible. Annotating your code makes it easier to understand for other people to interpret your process. Second, you will inevitably write a lot of code, get busy, move on to other things, and reopen your code months later with little to no memory of what you did. Spending the extra 5 minutes to annotate your work will save you a headache down the line.
+
+To comment your code, simply put a hashtag character, #, in front of your annotations. R treats # in a special way, and it will not run anything that follows # on a line.
+
+```{r}
+# I create an object first
+my_first_object <- 3
+
+
+# I double my object to create a second object
+my_second_object <- my_first_object * 2
+```
+
+## Indexing 
+Before we dive into R functions, lets learn about indexing. Indexing refers to the process of selecting specific elements or subsets of data from vectors, matrices, dataframes or lists using their positions (indices) or other criteria. In R, we use square bracket `[]` for indexing. 
+
+
+### Integer Indexing
+Lets say we want to see what specific element of a vector looks like. 
+
+```{r}
+# What is the 2nd element in the age vector?
+age[2]
+```
+
+### Negative Integer Indexing
+If you want all the elements except 2nd element, we can use negative indexing. 
+
+```{r}
+age[-2]
+```
+
+If we want to access multiple elements of a vector at once, we can use concatenate function `c()`. 
+
+```{r}
+# What is the 3rd and 4th element in the age vector?
+age[c(3,4)]
+```
+
+Indexing works not only in vectors, but also in matrices, dataframes and other classes of objects. Lets say we want to access first column of our dataset.
+
+```{r}
+# Print the first column of our graduate student dataset
+dat_grads[, 1]
+```
+
+Now, instead of column, suppose we want to print data of a particular respondent/id (i.e., print rows instead of columns). 
+
+```{r}
+# Print the data of 3rd and 4th student in the dataset
+dat_grads[c(3,4), ]
+```
+
+### Logical Indexing
+Suppose you want to filter your data using a condition. For example, we want a dataset of the students who have income more than $10.
+
+```{r}
+# Print the data of students with income more than $10
+dat_grads[dat_grads$income > 10, ]
+```
+
+### Name Indexing
+We can also use names or characters to select columns or filter elements.
+```{r}
+# Print data of students with id = 3 and 4
+dat_grads[dat_grads$id %in% c(3,4), ]
+```
+
+## Basic Summary Statistics using R functions
+Now we can calculate some descriptive statistics such as mean, standard deviation and so on. We will learn about summary statistics for dataframes in the next section. For now, let us just focus on vector. 
+
+```{r}
+# Creating a random vector. Also include the elements of vector age in this new vector
+my_third_object <- c(23, 24, age, 26, 30, 34, 36, 40)
+
+# What is the length of the vector?
+length(my_third_object)
+```
+
+Now, lets calculate mean, median, standard deviation, minimum and maximum of our vector. 
+
+```{r}
+# Minimum value
+min(my_third_object)
+
+# Maximum value
+max(my_third_object)
+
+# Mean
+mean(my_third_object)
+
+# Median
+median(my_third_object)
+
+# Standard deviation
+sd(my_third_object)
+```
+
+You can also use `summary()` function. 
+
+Now, lets calculate mean manually and check if it matches with the R in-built commands. You can do the same for other statistics on your own. 
+
+```{r}
+# Calculating mean manually
+my_mean <- sum(my_third_object) / length(my_third_object)
+
+# Check if this result matches the one calculated by R's in-built function
+mean(my_third_object) == my_mean
+```
+
+## Some Other functions
+Lets talk about some in-built functions that we frequently use. We will also go through some examples of nesting. The functions in R can be nested within the other function.
+
+Lets say we want to know the number of unique observations in our vector. We first use `unique()` function to print unique values in the vector and next it within `length()` function to give number of unique values.
+
+```{r}
+length(unique(my_third_object))
+```
+
+Similarly, lets calculate the mean again but now, we want to round it off to 2 digits. 
+
+```{r}
+round(mean(my_third_object), digits = 2)
+```
+
+Now, lets sample some elements of the vector. Each time you sample, you get different results. 
+
+```{r}
+# Sample 5 elements
+sample(my_third_object, size = 5, replace = TRUE)
+```
+
+
+```{r}
+# Sample 5 elements again
+sample(my_third_object, size = 5, replace = TRUE)
+```
+
+Anytime your code involves random processes (such as sampling), include the `set.seed()` function at the beginning of your script to make your results reproducible. That way, the next time you run your code, the same samples will be generated from when you first wrote the script. 
+
+```{r}
+set.seed(12345)
+```
+
+### Writing your own functions
+You will often find yourself in situations where you have to calculate same thing repetitively for different data or variables. In such situations, writing your own functions as well as running loops will allow you to get your desired results efficiently. 
+
+```{r}
+# Write a function that calculates circumference of a circle given a radius
+circumference <- function(r) {
+  result <- 2 * pi * r
+  print(result)
+}
+```
+
+```{r}
+circumference(r = 2)
+circumference(r = 10)
+```
+
+Lets try another example. Suppose you roll two die and you want to find out the sum of the outcome. 
+
+```{r}
+roll <- function() {
+  die <- sample(seq(1:6), replace = TRUE, size = 2)
+  return(sum(die))
+}
+```
+
+Now try rolling the die and notice that you get different outcomes everytime. 
+
+```{r}
+roll()
+roll()
+roll()
+```
+
+### For loops
+
+For loops are used to iterate a set of operations over a collection of objects such as vector, data frame, matrix or lists. 
+
+```r
+for (variable in sequence) {
+    expression
+}
+
+```
+
+Suppose you have a vector of radius and you need to calculate circumference for each one of those. Instead of computing circumference separately for each radius, we can use for loop to conduct such repetitive task. 
+
+```{r}
+# Create a vector of radius
+radius <- c(1,3,4,6,8,9,10)
+
+# Loop accross all radius values to compute circumference
+for (i in radius) {
+  circumference(r = i)
+}
+```
+
+
+
+---

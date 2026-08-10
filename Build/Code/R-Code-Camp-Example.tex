@@ -1,0 +1,1058 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Introduction to R},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Introduction to R}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\section{Getting Started with R}\label{getting-started-with-r}
+
+Welcome to the R Basics page! We'll walk through installing R, running
+simple operations, creating objects, understanding data types, and more.
+
+\subsection{Installing R and RStudio}\label{installing-r-and-rstudio}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Download R} from the CRAN website:
+  \url{https://cran.r-project.org/}
+\item
+  \textbf{Download RStudio} (a user-friendly IDE):
+  \url{https://posit.co/download/rstudio-desktop/}
+\item
+  Install R first, then RStudio.
+\end{enumerate}
+
+\subsection{Interacting with R}\label{interacting-with-r}
+
+To interact with R, we need R-Studio which is very user friendly. By
+default, R studio has 4 different panes. The top-left pane shows
+R-script where you would like to code and save your work as you go. To
+create a new script, go to File \textgreater{} New File \textgreater{} R
+Script, or press \texttt{ctrl(command)\ +\ shift\ +\ N}. To run your
+commands, press \texttt{ctrl\ +\ Enter} or \texttt{command\ +\ Enter}.
+To run all your code at once, press \texttt{Ctrl\ +\ A\ +\ Enter}.
+
+The bottom left window is your console. If you quickly want to check
+something or run a code without needing it to be saved on your r-script,
+you can directly type into the console. The output/messages/errors are
+also shown in the console once you run the code.
+
+Next, the top right window is called ``The Environment''. This window
+shows vectors, matrices, dataframes, output etc. in form of objects.
+
+The last window on the bottom right shows plots and graphs. There are
+also other tabs such as ``Files'', ``History'', ``Packages and so on.
+
+\subsection{Running Basic Operations}\label{running-basic-operations}
+
+You can use R like a calculator. Try running these in the console, or
+any other calculations you would do in the calculator.
+
+Addition
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5}\SpecialCharTok{+}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+Substraction
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5{-}3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+Multiplication
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5} \SpecialCharTok{*} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15
+\end{verbatim}
+
+Division
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5}\SpecialCharTok{/}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.666667
+\end{verbatim}
+
+Simplification
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{5}\SpecialCharTok{+}\DecValTok{3} \SpecialCharTok{{-}} \DecValTok{2}\SpecialCharTok{\^{}}\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\subsection{Basic Functions}\label{basic-functions}
+
+R has some basic functions installed already. Some of examples are given
+below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{))            }\CommentTok{\# Calculates sum}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{6}\NormalTok{))           }\CommentTok{\# Calculates mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{, }\AttributeTok{by =} \DecValTok{2}\NormalTok{)         }\CommentTok{\# Generates a sequence}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 3 5 7 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sample}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{), }\AttributeTok{size =} \DecValTok{1}\NormalTok{) }\CommentTok{\# Rolling a die}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\subsection{Installing and Loading
+Packages}\label{installing-and-loading-packages}
+
+R is open source; anyone can make their own functions and packages. One
+of the most commonly used and versatile package is \texttt{tidyverse}.
+You can install and load it as follows. Note that you only need to
+install packages once.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{) }\CommentTok{\#run this in console}
+\FunctionTok{library}\NormalTok{(tidyverse) }
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Getting Help}\label{getting-help}
+
+Different help commands allow you to go through the arguments and
+details of a particular function. For example, if you want to know how
+to use \texttt{mean()} function, you can do it in the following way.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?mean}
+\FunctionTok{help}\NormalTok{(mean)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Creating Objects}\label{creating-objects}
+
+R is an object-based programming. You can assign values to objects using
+\texttt{\textless{}-} or \texttt{=} operator. You can assign values,
+data, integers, characters et cetera to the object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{2}
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+We can use \texttt{print()} or just type the object name to view its
+value:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a}
+\end{Highlighting}
+\end{Shaded}
+
+If you are computing something (a simple arithmetic operation or running
+a regression itself), you can store those results as well. Stata has
+different \texttt{r()} and \texttt{e()} class commands to store results
+which can be limiting, but in R, the results can simply be stored into
+different objects granting more flexibility.
+
+Note that objects can be overwritten. If I want to assign different
+values to a, b and c, I can do so as follows.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{10}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{30}
+\NormalTok{c }\OtherTok{\textless{}{-}} \DecValTok{12}
+\end{Highlighting}
+\end{Shaded}
+
+If you print these objects, you will get new assigned values instead of
+the old ones.
+
+Now, let us suppose a school student asked us to solve quadratic
+equations of the form \(ax^2 + bx + c\). The quadratic formula we all
+know for this is:
+
+\[
+\frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\] We have defined the values for a, b and c in the previous code
+snippet. So, we can simply calculate using the quadratic formula.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{b }\SpecialCharTok{+} \FunctionTok{sqrt}\NormalTok{(b}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{a}\SpecialCharTok{*}\NormalTok{c)) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.4753049
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{b }\SpecialCharTok{{-}} \FunctionTok{sqrt}\NormalTok{(b}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{a}\SpecialCharTok{*}\NormalTok{c)) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ a)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.524695
+\end{verbatim}
+
+You can store these results in object too.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result }\OtherTok{\textless{}{-}}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{b }\SpecialCharTok{+} \FunctionTok{sqrt}\NormalTok{(b}\SpecialCharTok{\^{}}\DecValTok{2} \SpecialCharTok{{-}} \DecValTok{4}\SpecialCharTok{*}\NormalTok{a}\SpecialCharTok{*}\NormalTok{c)) }\SpecialCharTok{/}\NormalTok{ (}\DecValTok{2} \SpecialCharTok{*}\NormalTok{ a)}
+\FunctionTok{print}\NormalTok{(result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.4753049
+\end{verbatim}
+
+Sometimes we might need to use different values of a,b and c to
+calculate the quadratic equation. For such repetitive tasks, we can make
+our own functions and run loops to compute at once. We'll talk about it
+later on in the camp.
+
+\subsection{Classes of Objects}\label{classes-of-objects}
+
+In STATA or excel, some columns are numbers and some can be characters/
+strings. They could also be boolean or logical (\texttt{TRUE} or
+\texttt{FALSE}). R has different terminologies and handles the data or
+objects based on the type it is defined as. We call it \texttt{class()}
+in R.
+
+Some common types of classes are as follows:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num }\OtherTok{\textless{}{-}} \FloatTok{3.14}       \CommentTok{\# numeric}
+\NormalTok{int }\OtherTok{\textless{}{-}} \DecValTok{42}\DataTypeTok{L}        \CommentTok{\# integer}
+\NormalTok{char }\OtherTok{\textless{}{-}} \StringTok{"Hello"}   \CommentTok{\# character}
+\NormalTok{logic }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}     \CommentTok{\# logical}
+\NormalTok{gender }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\StringTok{"female"}\NormalTok{) }\CommentTok{\# factor}
+\end{Highlighting}
+\end{Shaded}
+
+You can check the class of objects using \texttt{class} or
+\texttt{typeof} command.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(num)}
+\FunctionTok{class}\NormalTok{(char)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Vectors}\label{vectors}
+
+Vectors are a basic data structure in R. A single number is technically
+a vector of length 1. The function \texttt{length} tells us how many
+entries are there in a vector.
+
+\subsubsection{Numeric}\label{numeric}
+
+Lets create a vector of our own. Suppose we have 4 graduate students in
+a classroom and we want to store their age in years.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{28}\NormalTok{)}
+\FunctionTok{length}\NormalTok{(age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+We see that the vector has 4 entries. But what is the class of this
+vector? Lets check.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(age)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+Similarly, lets create a vector of income of students.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{income }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{30}\NormalTok{)}
+\FunctionTok{class}\NormalTok{(income)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\subsubsection{Factors (Categorical
+Variables)}\label{factors-categorical-variables}
+
+Factors denote a class for storing categorical data in R. Suppose, now
+we also want to store the information on gender of 4 students in the
+classroom.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{gender }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"male"}\NormalTok{, }\StringTok{"female"}\NormalTok{, }\StringTok{"female"}\NormalTok{, }\StringTok{"male"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Logical}\label{logical}
+
+Now, we want to know whether these students attended the code camp at
+CSU. Lets store that information as well as a vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{attend\_camp }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Note that, normally in statistical analysis, we store this information
+as 1 or 0. But I am using logical vector here just for the illustration
+purposes.
+
+\subsection{Data Frames}\label{data-frames}
+
+Until now, we just worked with numbers and vectors. In reality, as
+economists, we would have to work with large dataset. Like excel
+spreadsheet, R has an object class \texttt{dataframe} that stores the
+data in a spreadsheet-like format.
+
+Now, lets try combing the information on 4 students in a single data
+frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dat\_grads }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(age, gender, income, attend\_camp, }\AttributeTok{id =} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{))}
+\FunctionTok{head}\NormalTok{(dat\_grads)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   age gender income attend_camp id
+## 1  20   male      5        TRUE  1
+## 2  25 female     10       FALSE  2
+## 3  30 female     20       FALSE  3
+## 4  28   male     30        TRUE  4
+\end{verbatim}
+
+\subsection{The accessor}\label{the-accessor}
+
+The accessor \texttt{\$} is used to access particular columns within a
+dataframe in R.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What is the frequency of male and female?}
+\FunctionTok{table}\NormalTok{(dat\_grads}\SpecialCharTok{$}\NormalTok{gender)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## female   male 
+##      2      2
+\end{verbatim}
+
+\subsection{Matrices}\label{matrices}
+
+Matrix is very important in econometric analysis. All the econometrics
+commands in STATA, R or any other statistical packages are based on
+matrix. If you have ever heard or used GAUSS, you will need to do
+regressions and stuff using the matrix operations. Thanks to developers
+these days who make pre-built packages where we could just input our
+data frame and variables and get regression results.
+
+Lets start off with a simple \(2\times2\) matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat1 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{2}\NormalTok{, }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(mat1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+\end{verbatim}
+
+Similarly, lets create a \(2\times3\) matrix.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat2 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{2}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Lets do some matrix operations which we commonly use including addition,
+subtraction, multiplication, inverse, transpose et. cetera. Note that
+the dimensions need to match following matrix rules, otherwise R will
+return error.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat1 }\SpecialCharTok{+}\NormalTok{ mat1 }\CommentTok{\# Addition}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    2    4
+## [2,]    6    8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mat1 }\SpecialCharTok{\%*\%}\NormalTok{ mat2 }\CommentTok{\# Multiplication}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3] [,4] [,5] [,6]
+## [1,]    5   11   17    5   11   17
+## [2,]   11   25   39   11   25   39
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t}\NormalTok{(mat2)     }\CommentTok{\#Transpose}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    2
+## [2,]    3    4
+## [3,]    5    6
+## [4,]    1    2
+## [5,]    3    4
+## [6,]    5    6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{solve}\NormalTok{(mat1) }\CommentTok{\# Inverse}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,] -2.0  1.0
+## [2,]  1.5 -0.5
+\end{verbatim}
+
+\subsection{Comment your work!}\label{comment-your-work}
+
+Commenting your code is important for two main reasons. First, as a
+scientist, you should strive to make your work reproducible. Annotating
+your code makes it easier to understand for other people to interpret
+your process. Second, you will inevitably write a lot of code, get busy,
+move on to other things, and reopen your code months later with little
+to no memory of what you did. Spending the extra 5 minutes to annotate
+your work will save you a headache down the line.
+
+To comment your code, simply put a hashtag character, \#, in front of
+your annotations. R treats \# in a special way, and it will not run
+anything that follows \# on a line.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# I create an object first}
+\NormalTok{my\_first\_object }\OtherTok{\textless{}{-}} \DecValTok{3}
+
+
+\CommentTok{\# I double my object to create a second object}
+\NormalTok{my\_second\_object }\OtherTok{\textless{}{-}}\NormalTok{ my\_first\_object }\SpecialCharTok{*} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Indexing}\label{indexing}
+
+Before we dive into R functions, lets learn about indexing. Indexing
+refers to the process of selecting specific elements or subsets of data
+from vectors, matrices, dataframes or lists using their positions
+(indices) or other criteria. In R, we use square bracket \texttt{{[}{]}}
+for indexing.
+
+\subsubsection{Integer Indexing}\label{integer-indexing}
+
+Lets say we want to see what specific element of a vector looks like.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What is the 2nd element in the age vector?}
+\NormalTok{age[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 25
+\end{verbatim}
+
+\subsubsection{Negative Integer
+Indexing}\label{negative-integer-indexing}
+
+If you want all the elements except 2nd element, we can use negative
+indexing.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{age[}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20 30 28
+\end{verbatim}
+
+If we want to access multiple elements of a vector at once, we can use
+concatenate function \texttt{c()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# What is the 3rd and 4th element in the age vector?}
+\NormalTok{age[}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{)]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 30 28
+\end{verbatim}
+
+Indexing works not only in vectors, but also in matrices, dataframes and
+other classes of objects. Lets say we want to access first column of our
+dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Print the first column of our graduate student dataset}
+\NormalTok{dat\_grads[, }\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20 25 30 28
+\end{verbatim}
+
+Now, instead of column, suppose we want to print data of a particular
+respondent/id (i.e., print rows instead of columns).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Print the data of 3rd and 4th student in the dataset}
+\NormalTok{dat\_grads[}\FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   age gender income attend_camp id
+## 3  30 female     20       FALSE  3
+## 4  28   male     30        TRUE  4
+\end{verbatim}
+
+\subsubsection{Logical Indexing}\label{logical-indexing}
+
+Suppose you want to filter your data using a condition. For example, we
+want a dataset of the students who have income more than \$10.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Print the data of students with income more than $10}
+\NormalTok{dat\_grads[dat\_grads}\SpecialCharTok{$}\NormalTok{income }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   age gender income attend_camp id
+## 3  30 female     20       FALSE  3
+## 4  28   male     30        TRUE  4
+\end{verbatim}
+
+\subsubsection{Name Indexing}\label{name-indexing}
+
+We can also use names or characters to select columns or filter
+elements.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Print data of students with id = 3 and 4}
+\NormalTok{dat\_grads[dat\_grads}\SpecialCharTok{$}\NormalTok{id }\SpecialCharTok{\%in\%} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{), ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   age gender income attend_camp id
+## 3  30 female     20       FALSE  3
+## 4  28   male     30        TRUE  4
+\end{verbatim}
+
+\subsection{Basic Summary Statistics using R
+functions}\label{basic-summary-statistics-using-r-functions}
+
+Now we can calculate some descriptive statistics such as mean, standard
+deviation and so on. We will learn about summary statistics for
+dataframes in the next section. For now, let us just focus on vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Creating a random vector. Also include the elements of vector age in this new vector}
+\NormalTok{my\_third\_object }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{, age, }\DecValTok{26}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{34}\NormalTok{, }\DecValTok{36}\NormalTok{, }\DecValTok{40}\NormalTok{)}
+
+\CommentTok{\# What is the length of the vector?}
+\FunctionTok{length}\NormalTok{(my\_third\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 11
+\end{verbatim}
+
+Now, lets calculate mean, median, standard deviation, minimum and
+maximum of our vector.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Minimum value}
+\FunctionTok{min}\NormalTok{(my\_third\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Maximum value}
+\FunctionTok{max}\NormalTok{(my\_third\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 40
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mean}
+\FunctionTok{mean}\NormalTok{(my\_third\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28.72727
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Median}
+\FunctionTok{median}\NormalTok{(my\_third\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Standard deviation}
+\FunctionTok{sd}\NormalTok{(my\_third\_object)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.034748
+\end{verbatim}
+
+You can also use \texttt{summary()} function.
+
+Now, lets calculate mean manually and check if it matches with the R
+in-built commands. You can do the same for other statistics on your own.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calculating mean manually}
+\NormalTok{my\_mean }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(my\_third\_object) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(my\_third\_object)}
+
+\CommentTok{\# Check if this result matches the one calculated by R\textquotesingle{}s in{-}built function}
+\FunctionTok{mean}\NormalTok{(my\_third\_object) }\SpecialCharTok{==}\NormalTok{ my\_mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\subsection{Some Other functions}\label{some-other-functions}
+
+Lets talk about some in-built functions that we frequently use. We will
+also go through some examples of nesting. The functions in R can be
+nested within the other function.
+
+Lets say we want to know the number of unique observations in our
+vector. We first use \texttt{unique()} function to print unique values
+in the vector and next it within \texttt{length()} function to give
+number of unique values.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(my\_third\_object))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10
+\end{verbatim}
+
+Similarly, lets calculate the mean again but now, we want to round it
+off to 2 digits.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(my\_third\_object), }\AttributeTok{digits =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28.73
+\end{verbatim}
+
+Now, lets sample some elements of the vector. Each time you sample, you
+get different results.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sample 5 elements}
+\FunctionTok{sample}\NormalTok{(my\_third\_object, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 24 26 26 24 28
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Sample 5 elements again}
+\FunctionTok{sample}\NormalTok{(my\_third\_object, }\AttributeTok{size =} \DecValTok{5}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 36 40 36 30 28
+\end{verbatim}
+
+Anytime your code involves random processes (such as sampling), include
+the \texttt{set.seed()} function at the beginning of your script to make
+your results reproducible. That way, the next time you run your code,
+the same samples will be generated from when you first wrote the script.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{12345}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Writing your own
+functions}\label{writing-your-own-functions}
+
+You will often find yourself in situations where you have to calculate
+same thing repetitively for different data or variables. In such
+situations, writing your own functions as well as running loops will
+allow you to get your desired results efficiently.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Write a function that calculates circumference of a circle given a radius}
+\NormalTok{circumference }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(r) \{}
+\NormalTok{  result }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*}\NormalTok{ pi }\SpecialCharTok{*}\NormalTok{ r}
+  \FunctionTok{print}\NormalTok{(result)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{circumference}\NormalTok{(}\AttributeTok{r =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 12.56637
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{circumference}\NormalTok{(}\AttributeTok{r =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 62.83185
+\end{verbatim}
+
+Lets try another example. Suppose you roll two die and you want to find
+out the sum of the outcome.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{roll }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{  die }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{), }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{size =} \DecValTok{2}\NormalTok{)}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{sum}\NormalTok{(die))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Now try rolling the die and notice that you get different outcomes
+everytime.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{roll}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{roll}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{roll}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7
+\end{verbatim}
+
+\subsubsection{For loops}\label{for-loops}
+
+For loops are used to iterate a set of operations over a collection of
+objects such as vector, data frame, matrix or lists.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (variable }\ControlFlowTok{in}\NormalTok{ sequence) \{}
+\NormalTok{    expression}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Suppose you have a vector of radius and you need to calculate
+circumference for each one of those. Instead of computing circumference
+separately for each radius, we can use for loop to conduct such
+repetitive task.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Create a vector of radius}
+\NormalTok{radius }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Loop accross all radius values to compute circumference}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ radius) \{}
+  \FunctionTok{circumference}\NormalTok{(}\AttributeTok{r =}\NormalTok{ i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6.283185
+## [1] 18.84956
+## [1] 25.13274
+## [1] 37.69911
+## [1] 50.26548
+## [1] 56.54867
+## [1] 62.83185
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\end{document}
