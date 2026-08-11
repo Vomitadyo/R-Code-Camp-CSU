@@ -5,7 +5,7 @@ PhD Candidate\
 Department of Agricultural and Resource Economics\
 Colorado State University
 
-------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------
 
 # About the Code Camp
 
@@ -19,6 +19,8 @@ This workshop is tailored for incoming first-year Master’s and PhD Economics a
 - Reshaping and transforming data
 - Data analysis: summary statistics, visualizations, regressions, etc.
 - Introduction to GIS *(if time permits)*
+
+
 
 Please install **R** and **RStudio** before the workshop begins.
 
@@ -38,3 +40,16 @@ Please install **R** and **RStudio** before the workshop begins.
 
 - Download the **zipped project folder** shared in the email.
 - Extract the `.zip` file to a folder of your choice.
+
+
+--------------------------------------------------------------------------------------------------
+
+Reference
+
+My Github Repository https://github.com/Vomitadyo/R-Code-Camp-CSU
+2025 Shreezal GC:  https://darecodecamp.shreezalgc.com.np/
+2024 Ming Wang:  https://wming4.wixsite.com/code-camp/.
+https://github.com/rstudio/cheatsheets/blob/main/sf.pdf
+https://happygitwithr.com/
+
+
