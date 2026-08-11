@@ -1,15 +1,40 @@
-
 # Welcome to the Code Camp
 
-This workshop is tailored for incoming first year Master’s and PhD Economics and Agricultural and Resource Economics (DARE) students. We will be walking through the basics of R programming that will help you in your coursework and eventually in your research at CSU.
-The workshop will cover the following contents overall:
+**Innocent Vomitadyo**\
+PhD Candidate\
+Department of Agricultural and Resource Economics\
+Colorado State University
 
-Introduction to R; object-based programming
-Coding basics and writing codes
-Basic data types and transformation
-Matrix operations
-Reading and writing files in different format
-Reshaping and transforming data
-Data Analysis: summary statistics, visualizations, regressions etc
-Introduction to GIS (If time permits)
+------------------------------------------------------------------------
 
+# About the Code Camp
+
+This workshop is tailored for incoming first-year Master’s and PhD Economics and Agricultural and Resource Economics (DARE) students. We will walk through the basics of R programming to help you with your coursework and, eventually, your research at CSU. The workshop will cover the following content overall:
+
+- Introduction to R: object-based programming
+- Coding basics and writing code
+- Basic data types and transformation
+- Matrix operations
+- Reading and writing files in different formats
+- Reshaping and transforming data
+- Data analysis: summary statistics, visualizations, regressions, etc.
+- Introduction to GIS *(if time permits)*
+
+Please install **R** and **RStudio** before the workshop begins.
+
+### 1. Install R
+
+- Download R from [CRAN](https://cran.r-project.org/).
+- Select your operating system (**Windows, macOS, or Linux**).
+- Download and install using the default settings.
+
+### 2. Install RStudio
+
+- Download **RStudio Desktop** from [Posit](https://posit.co/download/rstudio-desktop/).
+- Select the free version and install it using the default settings.
+- **Install R first, then RStudio.**
+
+### 3. Download the Workshop Files
+
+- Download the **zipped project folder** shared in the email.
+- Extract the `.zip` file to a folder of your choice.
