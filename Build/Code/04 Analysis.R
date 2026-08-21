@@ -1,7 +1,5 @@
 
 # Packages
-library(ggplot2)
-library(dplyr)
 
 
 rm(list = ls())
@@ -28,7 +26,7 @@ var_summary <- My_df %>%
   group_by(Status) %>%
   summarise(
     Age_Mean = mean(Age, na.rm = TRUE),
-    Elevation_Mean = mean(elevation, na.rm = TRUE),
+    Elevation_Mean = mean(Elevation, na.rm = TRUE),
     Field_Size_Mean = mean(Field_Size, na.rm = TRUE),
     Groundwater_Mean = mean(DepthToGroundwater, na.rm = TRUE),
     Precipitation_Mean = mean(Mean_Precipitation, na.rm = TRUE),
@@ -36,8 +34,9 @@ var_summary <- My_df %>%
   ) %>%
   ungroup() 
 
-var_summary
 
+var_summary
+print(var_summary)
 
 
 
@@ -97,7 +96,7 @@ ggplot(My_df, aes(x = Age, y = Field_Size, color = Status)) +
 # Correlation matrix
 # select numeric variables only
 cor_data <- My_df %>%
-  select(Age, Field_Size, elevation,
+  select(Age, Field_Size, Elevation,
          DepthToGroundwater,
          Mean_Precipitation,
          Mean_Temp)
@@ -106,18 +105,21 @@ cor_matrix <- cor(cor_data)
 
 
 # Linear Regression
-model <- lm(Tot_CREP_Rate ~ Age + Field_Size + DepthToGroundwater, data = My_df)
+model23 <- lm(Payment_per_acre ~ Age + Field_Size + DepthToGroundwater, data = My_df)
 
-summary(model)
+summary(model23)
 
 
 # Logit 
 library(VGAM)
 
 
-Logit_Model <- vglm(Status ~ Age + Field_Size + elevation +
+Logit_Model <- vglm(Status ~ Age + Field_Size + Elevation +
                       DepthToGroundwater + Mean_Precipitation + Mean_Temp, 
                     family = multinomial(refLevel = 1), 
                     data = My_df)
 
 summary(Logit_Model)
+
+
+

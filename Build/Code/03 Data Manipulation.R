@@ -5,11 +5,6 @@
 rm(list = ls())
 
 
-# load addirtional packages
-library(dplyr)
-library(ggplot2)
-library(raster)
-
 
 # import data
 Data_A <- read.csv('Build/Data/Data_A.csv')
@@ -22,20 +17,22 @@ glimpse(Data_A)
 
 
 # select cols  Farmer_ID, County, Latitude, Longitude
-ID_cols <- select(Data_A, Farmer_ID, County, Latitude, Longitude)
+
+ID_cols <- dplyr::select(Data_A, Farmer_ID, County, Latitude, Longitude)
 
 
 
 
 
 # filter retired fields only (Status == "Retired")
+filtered <- filter(Data_A, Status == 'Retired')
 
 
 
 
 
 # Remove col X from Data_A
-Data_New <- select(Data_A, -X)
+Data_New <- dplyr::select(Data_A, -X)
 
 
 
@@ -43,7 +40,7 @@ Data_New <- select(Data_A, -X)
 
 
 # Rename cols
-
+new_data <- rename(Data_A, Identification = Farmer_ID)
 
 
 
@@ -72,7 +69,7 @@ New_Col1 <- mutate(Data_A,
 # Import Data_A, Filter retired fields and select cols
 Data_A <- read.csv('Build/Data/Data_A.csv') %>%
   filter(Status == 'Retired') %>%
-  select(Farmer_ID, County, Latitude, Longitude)
+  dplyr::select(Farmer_ID, County, Latitude, Longitude)
 
 
 #------------------------------------------------------------------------
@@ -99,15 +96,26 @@ Data_B <- read.csv('Build/Data/Data_B.csv')
 ## Total_Payment = Field_Size * Payment_per_acre
 ## Log_Total_Payment = log(Total_Payment) 
 
-My_df <- 
+My_df <- merge(Data_A, Data_B, by = c("Farmer_ID"), all.y = T) %>% # merging
+  dplyr::select(-X.x, -X.y) %>%
+  mutate( Sand_Soil = case_when(Soil_Texture %in% c('Sand', 'Loamy Sand')  ~ 1,  
+                                TRUE ~ 0)) %>%
+  rename(Elevation = elevation, `Year Retired` = Year_Retired) %>% # rename
+  rename(Payment_per_acre = Tot_CREP_Rate) %>% #
+  mutate(Age_Squared = Age^2, 
+         Total_Payment = Field_Size * Payment_per_acre,
+         Log_Total_Payment = log(Total_Payment))
+  
+  
+  
 
 # Save, Export 
 
 # Export to csv and save in Cache folder as My_df
-write.csv(My_df, file = 'xxxxx/xxxxxxx/xxxxx/My_df.rds')
+write.csv(My_df, file = 'Build/Cache/My_df.csv')
 
 # Save as  an r object .rds file. 
-saveRDS(My_df, file = 'xxxxx/xxxxxxx/xxxxx/My_df.rds')
+saveRDS(My_df, file = 'Build/CAche/My_df.rds')
 
 
 

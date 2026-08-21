@@ -1,8 +1,4 @@
 
-# Load Packages
-library(tidyverse) 
-library(dplyr)
-
 
 # 1. Types of Data 
 

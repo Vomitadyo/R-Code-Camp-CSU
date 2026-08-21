@@ -24,6 +24,11 @@
 # R will return an error message if you type a command it doesn’t recognize.
 3 % 5
 3 + x
+
+x <- 4
+x=4
+
+3 + x
 #------------------------------------------------------------------
 
 
@@ -54,7 +59,7 @@ a+b+c-x
 
 
 num <- 3.14       # numeric
-int <- 42L        # integer
+int <- 42        # integer
 char <- "Hello"   # character
 logic <- TRUE     # logical
 gender <- factor("male", "female") # factor
@@ -66,7 +71,7 @@ my_vector <- c(1,2,3, -4, 3.24)
 gender <- factor(c("male", "female", "female", "male"))
 
 # What is the 2nd element in my vector?
-my_vector[2]
+my_vector[5]
 
 ## The c() function is flexible in what you can include, but what if you want to create a really long vector? 
 ## The : operator lets you create a sequence of integers, 
@@ -89,6 +94,7 @@ seq(2, 10, by = 0.5)
 
 A <-matrix(c(10, 8, 5, 12), ncol = 2, byrow = TRUE)
 A
+A[2,2]
 
 B <-matrix(c( 5, 3, 15, 6), ncol = 2, byrow = TRUE)
 B
@@ -100,6 +106,7 @@ A %*% B
 dim(A) # dimensions
 t(A) # Transpose
 det(A) # determinant
+
 
 # Packages
 # R is open source; anyone can make their own functions and packages. 
